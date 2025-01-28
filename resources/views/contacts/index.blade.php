@@ -220,11 +220,11 @@
 
 
 <!-- Footer -->
-<footer class="bg-gray-800 text-white py-10 dynamic-background">
-  <div class="max-w-screen-xl mx-auto flex justify-between items-center">
+<footer class="bg-gray-800 text-white py-16 px-8 md:px-20 lg:px-40 dynamic-background">
+  <div class="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between items-center">
     <!-- Left Section: Reach out & Connect and Social Icons -->
-    <div class="flex flex-col items-start">
-      <p class="text-lg text-gray-300">Reach out & Connect</p>
+    <div class="flex flex-col items-start text-center md:text-left">
+      <p class="text-lg text-gray-300">Reach out & Connect!</p>
       <p class="text-sm text-gray-400 mt-2">Let's connect on social platforms!</p>
       <div class="space-x-6 mt-4">
         <a href="https://www.facebook.com/rubaiyatfardin.nusrat" class="text-white hover:text-yellow-400" title="Facebook">
@@ -240,19 +240,18 @@
     </div>
 
     <!-- Center Section: Copyright -->
-    <div class="text-center">
+    <div class="text-center mt-8 md:mt-0">
       <p class="text-lg text-gray-300">Designed and developed by © Nushrat</p>
     </div>
 
     <!-- Right Section: Back to Top Button -->
-    <div>
+    <div class="mt-8 md:mt-0">
       <a href="#top" class="bg-yellow-400 text-gray-800 px-6 py-2 rounded-full text-sm font-semibold hover:bg-yellow-500 transition duration-300 ease-in-out">
         Back to Top
       </a>
     </div>
   </div>
 </footer>
-
   
   <script>
     const contactDynamicText = document.getElementById('contact-dynamic-text');
