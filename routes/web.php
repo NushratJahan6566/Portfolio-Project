@@ -11,8 +11,9 @@ use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\AboutMeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AuthController;
 
-use App\Http\Middleware\SimpleAuthMiddleware;
+use App\Http\Middleware\AuthMiddleware;
 
 
 Route::get('/', function () {
@@ -21,20 +22,24 @@ Route::get('/', function () {
 
 
 // Protect all admin routes inside this group
-Route::middleware([SimpleAuthMiddleware::class])->group(function () {
+Route::middleware([AuthMiddleware::class])->group(function () {
        
     
     // Default route with a name 'admin'
-    Route::get('/admin', function () {
-        $projectCount = \App\Models\Portfolio::count();  // Use full namespace
-        $unreadMessagesCount = \App\Models\ContactMe::where('read', false)->count(); // Count unread messages
-        return view('admin', [
-            'projectCount' => $projectCount,
-            'unreadMessagesCount' => $unreadMessagesCount
-        ]);
-    })->name('admin');
+    Route::get('/admin', [AuthController::class, 'showDashboard'])->name('admin');
     
     // Rest of your routes...
+    //logout
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    //reset
+    Route::get('/change-credentials', [AuthController::class, 'showReset'])->name('reset-credentials');
+    Route::post('/change-credentials', [AuthController::class,'reset']);
+
+    //Manage email
+    Route::get('/emails', [AuthController::class, 'showEmails'])->name('auth.email');
+    Route::post('/emails', [AuthController::class, 'storeEmail'])->name('emails.store');
+    Route::delete('/emails/{id}', [AuthController::class, 'deleteEmail'])->name('emails.destroy');
+
 
     // Service routes
     Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
@@ -108,7 +113,22 @@ Route::get('/portfolio-project', [HomeController::class, 'index'])->name('home.i
 
 // Login and Logout routes
 
-Route::get('/login/portfolio-admin', [LoginController::class, 'showLoginForm'])->name('login.form');
-Route::post('/login/portfolio-admin', [LoginController::class, 'processLogin'])->name('login.process');
-Route::get('/logout/portfolio-admin', [LoginController::class, 'logout'])->name('logout');
+//Route::get('/login/portfolio-admin', [LoginController::class, 'showLoginForm'])->name('login.form');
+//Route::post('/login/portfolio-admin', [LoginController::class, 'processLogin'])->name('login.process');
+//Route::get('/logout/portfolio-admin', [LoginController::class, 'logout'])->name('logout');
 
+
+//login
+Route::get('/login/portfolio-admin', [AuthController::class, 'showLogin'])->name('login.form');
+Route::post('/login/portfolio-admin', [AuthController::class, 'login'])->name('login.process');
+
+
+Route::get('/forgot-login', [AuthController::class, 'showForgotForm'])->name('forgot-login');
+Route::post('/send-code', [AuthController::class, 'sendVerificationCode'])->name('send-code');
+Route::get('/verify-code', [AuthController::class, 'showVerificationForm'])->name('verify-code');
+Route::post('/verify-code', [AuthController::class, 'verifyCode'])->name('post-verify-code');
+
+use App\Http\Middleware\VerifyCodeMiddleware;
+
+Route::get('/reset', [AuthController::class, 'showReset'])->name('update')->middleware(VerifyCodeMiddleware::class);
+Route::post('/reset', [AuthController::class, 'reset'])->name('update-credentials')->middleware(VerifyCodeMiddleware::class);

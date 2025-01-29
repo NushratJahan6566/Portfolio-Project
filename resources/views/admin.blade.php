@@ -332,11 +332,67 @@
             </button>
         </a>
         
-        
         <div class="user-actions">
+            <!-- Settings with Manage Email under it -->
+<div class="settings-dropdown" style="position: relative; display: inline-block;">
+    <a href="javascript:void(0);" class="settings-toggle" style="text-decoration: none; color: white; transition: color 0.3s;">
+        <i class="fas fa-cog"></i> Settings
+    </a>
+    <div class="settings-menu" style="display: none; position: absolute; background: white; border: 1px solid #ddd; border-radius: 5px; padding: 10px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); min-width: 150px;">
+        <a href="/emails" style="display: block; padding: 8px 12px; text-decoration: none; color: #333;"> 
+            <i class="fas fa-envelope"></i> Manage Email
+        </a>
+        
+        <!-- Reset Password Option with Icon -->
+        <a href="/change-credentials" style="display: block; padding: 8px 12px; text-decoration: none; color: #333;">
+            <i class="fas fa-key"></i> Change Login Credentials
+        </a>
+    </div>
+</div>
 
-            <a href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        
+            <!-- Logout -->
+            <form action="{{ route('logout') }}" method="POST" id="logout-form">
+                @csrf
+                <a href="javascript:void(0);" onclick="document.getElementById('logout-form').submit();" style="text-decoration: none; color: white; transition: color 0.3s;">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </form>
         </div>
+        
+        <script>
+            // JavaScript to toggle settings dropdown
+            document.querySelector('.settings-toggle').addEventListener('click', function(event) {
+                var dropdown = document.querySelector('.settings-menu');
+                
+                // Toggle the display property to show/hide the settings menu
+                dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+                
+                // Prevent the event from bubbling up to document
+                event.stopPropagation();
+            });
+        
+            // Close the settings menu if the user clicks anywhere outside the dropdown
+            document.addEventListener('click', function(event) {
+                var dropdown = document.querySelector('.settings-menu');
+                var settingsButton = document.querySelector('.settings-toggle');
+        
+                // Close the dropdown if the click is outside the settings button or the dropdown
+                if (!settingsButton.contains(event.target) && !dropdown.contains(event.target)) {
+                    dropdown.style.display = 'none';
+                }
+            });
+        </script>
+        
+        <style>
+            /* Hover effect for settings and logout links */
+            .user-actions a:hover {
+                color: rgb(182, 113, 43) !important;
+            }
+        </style>
+        
+        
+        
     </div>
 
     <!-- Main Content -->

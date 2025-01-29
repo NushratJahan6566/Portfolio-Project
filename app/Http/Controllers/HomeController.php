@@ -22,8 +22,8 @@ class HomeController extends Controller
         $contactMessages = ContactMe::all();
         $education = Education::all();
         $experience = Experience::all();
-         // Limit portfolios to 2 for the home page
-    $portfolios = Portfolio::take(2)->get();  // Limit to 2 items
+        // Limit portfolios to 2 for the home page
+        $portfolios = Portfolio::take(2)->get();  // Limit to 2 items
         $services = Service::all();
         $skills = Skill::all();
 

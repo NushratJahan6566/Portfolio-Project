@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Messages')
 @section('content')
     <!-- Page Banner -->
     <section class="banner">
