@@ -57,41 +57,45 @@
         </div>
 
         <!-- Experience List -->
-        <h3 class="text-center mb-4">Existing Professional Experience</h3>
-        @if($experiences->count())
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Job Title</th>
-                        <th>Company</th>
-                        <th>Start Year</th>
-                        <th>End Year</th>
-                        <th>Description</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($experiences as $experience)
-                        <tr>
-                            <td>{{ $experience->title }}</td>
-                            <td>{{ $experience->company }}</td>
-                            <td>{{ $experience->start_year }}</td>
-                            <td>{{ $experience->end_year ?? 'Present' }}</td>
-                            <td>{{ $experience->description }}</td>
-                            <td>
-                                <a href="{{ route('experience.edit', ['id' => $experience->id]) }}" class="btn btn-warning btn-sm">Edit</a>
-                                <form action="{{ route('experience.destroy', ['id' => $experience->id]) }}" method="POST" style="display:inline-block;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        @else
-            <p class="text-center">No professional experience found.</p>
-        @endif
+<h3 class="text-center mb-4">Existing Professional Experience</h3>
+@if($experiences->count())
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Job Title</th>
+                <th>Company</th>
+                <th>Start Year</th>
+                <th>End Year</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($experiences as $experience)
+                <tr>
+                    <td>{{ $experience->title }}</td>
+                    <td>{{ $experience->company }}</td>
+                    <td>{{ $experience->start_year }}</td>
+                    <td>{{ $experience->end_year ?? 'Present' }}</td>
+                    <td>{{ $experience->description }}</td>
+                    <td>
+                        <!-- Add inline-block or flex to keep the buttons side by side -->
+                        <div style="display: flex; gap: 10px;">
+                            <a href="{{ route('experience.edit', ['id' => $experience->id]) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <form action="{{ route('experience.destroy', ['id' => $experience->id]) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+@else
+    <p class="text-center">No professional experience found.</p>
+@endif
+
     </div>
 @endsection

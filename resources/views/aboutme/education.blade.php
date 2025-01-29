@@ -46,43 +46,48 @@
             </form>
         </div>
 
-        <!-- Education List -->
-        <h3 class="text-center mb-4">Existing Educational Details</h3>
-        @if(isset($educations) && $educations->count())
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Degree</th>
-                        <th>Institution</th>
-                        <th>Start Year</th>
-                        <th>End Year</th>
-                        <th>Description</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($educations as $ed)
-                        <tr>
-                            <td>{{ $ed->degree }}</td>
-                            <td>{{ $ed->institution }}</td>
-                            <td>{{ $ed->start_year }}</td>
-                            <td>{{ $ed->end_year }}</td>
-                            <td>{{ $ed->description }}</td>
-                            <td>
-                                <a href="{{ route('education.edit', $ed->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                <form action="{{ route('education.destroy', $ed->id) }}" method="POST" style="display:inline-block;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        @else
-            <p class="text-center">No educational details found.</p>
-        @endif
+      <!-- Education List -->
+<h3 class="text-center mb-4">Existing Educational Details</h3>
+@if(isset($educations) && $educations->count())
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Degree</th>
+                <th>Institution</th>
+                <th>Start Year</th>
+                <th>End Year</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($educations as $ed)
+                <tr>
+                    <td>{{ $ed->degree }}</td>
+                    <td>{{ $ed->institution }}</td>
+                    <td>{{ $ed->start_year }}</td>
+                    <td>{{ $ed->end_year }}</td>
+                    <td>{{ $ed->description }}</td>
+                    <td>
+                        <!-- Add inline-block or flex to ensure buttons stay side by side -->
+                        <div style="display: flex; gap: 10px;">
+                            <a href="{{ route('education.edit', $ed->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <form action="{{ route('education.destroy', $ed->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+@else
+    <p>No educational details found.</p>
+@endif
+
+            
     </div>
     
 @endsection
