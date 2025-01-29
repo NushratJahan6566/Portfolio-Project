@@ -4,22 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin-Portfolio</title>
+    <link rel="icon" href="{{ asset('images/logo2.jpg') }}" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* Base styles */
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f4f6f9;
             color: #333;
         }
 
-        /* Sidebar styles */
+        
         .sidebar {
-            background-color: #1a2b3c; /* Dark navy blue */
+            background-color: #1a2b3c; 
             color: white;
             padding: 20px;
             width: 250px;
@@ -36,8 +37,8 @@
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 30px;
-            color: #f39c12; /* Unique color for portfolio name */
-            font-family: 'Dancing Script', cursive; /* Different font */
+            color: #f39c12; 
+            font-family: 'Dancing Script', cursive; 
         }
 
         .sidebar .webcraft-logo i {
@@ -66,13 +67,13 @@
             background-color: #495057;
         }
 
-        /* Header styles */
+        
         .header {
-            background-color: #1a2b3c; /* Dark navy blue */
+            background-color: #1a2b3c; 
             color: white;
             padding: 15px 30px;
             display: flex;
-            justify-content: space-between; /* Align header items to the right */
+            justify-content: space-between; 
             align-items: center;
             position: fixed;
             top: 0;
@@ -97,7 +98,7 @@
             color: #f39c12;
         }
 
-        /* Content styles */
+        
         .content {
             margin-left: 250px;
             padding: 30px;
@@ -112,7 +113,7 @@
             font-weight: 600;
         }
 
-        /* Banner styles */
+       
         .banner {
             background-image: url('{{ asset('images/web3.png') }}');
             background-size: cover;
@@ -131,7 +132,6 @@
             font-size: 1.25rem;
         }
 
-        /* Card Styles */
         .card {
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -162,10 +162,10 @@
             background-color: #0056b3;
         }
 
-        /* Custom title style */
+       
         .sidebar h4 {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #f39c12; /* Portfolio name color */
+            color: #f39c12; 
             font-size: 1.8rem;
             letter-spacing: 1px;
             text-transform: capitalize;
@@ -174,29 +174,29 @@
             font-weight: bold;
         }
         .sidebar .nav-link.active {
-            background-color: #495057; /* Dark background for active link */
-            color: #f39c12; /* Highlight the active link color */
+            background-color: #495057; 
+            color: #f39c12; 
         }
 
         .admin-title {
-    color: white; /* White text color */
-    font-size: 1.25rem; /* Make the font slightly larger */
-    font-weight: 600; /* Slightly bolder font */
-   /* Make the font italic */
-    display: flex; /* Align the icon and text horizontally */
-    align-items: center; /* Center the icon and text vertically */
+    color: white; 
+    font-size: 1.25rem; 
+    font-weight: 600; 
+
+    display: flex; 
+    align-items: center; 
 }
 
 .icon {
     margin-right: 10px;
-     /* Space between icon and text */
+     
      color:white;
 }
 
 .admin-dashboard-text {
     font-size: 1.1rem; 
     color: white;
-    text-align: left; /* Ensures the text size remains consistent */
+    text-align: left; 
     
 }
 .sidebar-toggle {
@@ -208,7 +208,7 @@
     padding: 10px 20px;
    
     font-weight: bold;
-    order: -1;  /* This moves the button to the left of the header */
+    order: -1;  
 }
 
 

@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
+    <link rel="icon" href="{{ asset('images/logo2.jpg') }}" type="image/png">
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
@@ -13,7 +15,6 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            
         }
         body {
             display: flex;
@@ -23,18 +24,17 @@
             flex-direction: column;
             background-color: #f4f4f4;
         }
-          /* Logo Styling */
-          .webcraft-logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3.5rem;
-    font-weight: 700;
-    color: #f39c12;
-    font-family: 'Dancing Script', cursive; 
-    margin-bottom: 20px;
-    
-}
+        
+        .webcraft-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #f39c12;
+            font-family: 'Dancing Script', cursive; 
+            margin-bottom: 20px;
+        }
 
         .webcraft-logo i {
             font-size: 3.5rem;
@@ -67,19 +67,19 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(11, 75, 86, 0.156); /* Darker overlay for better contrast */
+            background: rgba(11, 75, 86, 0.156); 
         }
         .left-section-content {
             position: relative;
             z-index: 1;
         }
         .left-section h2 {
-            font-size: 48px; /* Increased font size for better visibility */
+            font-size: 48px; 
             font-weight: bold;
             margin-bottom: 10px;
-            color: #ffffff; /* Pure white for maximum contrast */
+            color: #ffffff; 
             font-family: 'Poppins', sans-serif;
-            text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.4); /* Stronger, softer shadow */
+            text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.4); 
         }
 
         .left-section p {
@@ -107,7 +107,6 @@
             margin-bottom: 20px;
         }
 
-        /* Style for error message */
         .error {
             color: #ff4d4d;
             font-size: 16px;
@@ -124,12 +123,12 @@
             color: #ff4d4d;
         }
 
-        /* Style for success message */
+        
         .success {
-            color: #28a745; /* Green color for success */
+            color: #28a745; 
             font-size: 16px;
             margin-bottom: 20px;
-            background-color: rgba(40, 167, 69, 0.1); /* Light green background */
+            background-color: rgba(40, 167, 69, 0.1); 
             padding: 10px;
             border-radius: 5px;
             display: flex;
@@ -218,6 +217,35 @@
             outline: none;
             text-decoration: underline;
         }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                width: 100%;
+            }
+            .left-section, .right-section {
+                flex: none;
+                width: 100%;
+                padding: 20px;
+            }
+            .webcraft-logo {
+                font-size: 2.5rem;
+            }
+            .left-section h2 {
+                font-size: 36px;
+            }
+            .right-section h2 {
+                font-size: 28px;
+            }
+            .input-group input {
+                padding-left: 40px;
+                font-size: 14px;
+            }
+            .login-btn {
+                font-size: 16px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -225,10 +253,10 @@
     <div class="container">
         <div class="left-section">
             <div class="admin-section">
-                 <!-- Logo outside the form -->
-     <div class="webcraft-logo">
-        <i class="fas fa-code"></i> <span>Portfolio Lab</span>
-    </div>
+               
+                <div class="webcraft-logo">
+                    <i class="fas fa-code"></i> <span>Portfolio Lab</span>
+                </div>
                 <h2>Welcome Back!</h2>
                 <p>Manage your portfolio content and stay updated with the latest projects and posts.</p>
             </div>
@@ -258,30 +286,25 @@
             <p style="color: red;"> <strong>Error:</strong> {{ $errors->first('access') }} </p>
             @endif
         
-        
-        
-
             <!-- Login Form -->
             <form action="{{ route('login.process') }}" method="POST">
                 @csrf
                 <!-- Username Input -->
                 <div class="input-group">
                     <i class="fas fa-user"></i>
-                    <input type="text" name="username" placeholder="Username" required>
+                    <input type="text" name="username" id="username" placeholder="Username" required value="{{ old('username') }}">
                 </div>
-                
                 <!-- Password Input -->
                 <div class="input-group">
                     <i class="fas fa-lock"></i>
-                    <input type="password" name="password" placeholder="Password" required>
+                    <input type="password" name="password" id="password" placeholder="Password" required>
                 </div>
-                
                 <!-- Login Button -->
-                <button class="login-btn" type="submit">Login</button>
+                <button type="submit" class="login-btn">Login</button>
             </form>
 
-            <!-- Forgot Password Link -->
-            <div class="footer">
+             <!-- Forgot Password Link -->
+             <div class="footer">
                 <p>Forgot your password? 
                     <a href="/forgot-login" class="forgot-password-link">Click here</a> to reset it.
                 </p>

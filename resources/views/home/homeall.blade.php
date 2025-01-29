@@ -15,7 +15,7 @@
 
 
   <style>
-    /* Faster Smooth Animated Gradient Background */
+  
     @keyframes gradientAnimation {
       0% {
         background-position: 0% 50%;
@@ -31,18 +31,18 @@
 
 
     
-/* Darker navy blue gradient background */
+
 .dynamic-background {
     background: linear-gradient(45deg, hsl(228, 80%, 10%), #001f3f, #002855, #00112b);
     background-size: 400% 400%;
     animation: gradientAnimation 5s ease infinite;
 }
 
-/* Background with image and darker overlay effect */
+
 .background-image {
     background: 
       linear-gradient(45deg, rgba(0, 31, 63, 0.8), rgba(0, 40, 85, 0.8), rgba(0, 17, 43, 0.8)), 
-      url('{{ asset('images/web2.png') }}'); /* Ensure this path is correct */
+      url('{{ asset('images/web2.png') }}'); 
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -53,7 +53,6 @@
     
 
 
-    /* Subtle text hover effect */
     .hero-text {
       transition: transform 0.3s ease, color 0.3s ease;
       font-family: 'Lora', serif;
@@ -66,20 +65,20 @@
     font-family: 'Lora', serif;
     font-size: 18px;
     line-height: 1.6;
-    color: #d1d1d1;  /* Light gray for readability */
+    color: #d1d1d1;  
 }
 
-/* Heading styling */
+
 .skills-section h3 {
     font-family: 'Lora', serif;
     font-size: 24px;
-    color: #facc15; /* Yellow for contrast */
+    color: #facc15;
     font-weight: bold;
 }
 
     .hero-text:hover {
       transform: translateY(-10px);
-      color: #f39c12; /* Accent color like in the template */
+      color: #f39c12; 
       font-family: 'Lora', serif;
     }
   </style>
@@ -89,7 +88,7 @@
  <!-- Navbar -->
 <header class="flex items-center justify-between px-8 md:px-40 py-8 relative z-10 background-image">
   <div class="flex items-center space-x-2">
-    <!-- Text with calligraphic font -->
+   
     <a href="{{ route('home.index') }}" class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-pink-600 text-4xl font-bold transition-transform duration-300 ease-in-out hover:scale-110" style="font-family: 'Dancing Script', cursive;">
       Nushrat
     </a>
@@ -231,11 +230,9 @@ typeEffect();
             <h3 class="text-xl font-bold text-yellow-400 mt-2">{{ $edu->degree }}</h3>
             <p class="text-gray-300 mt-2  text-justify">{{ $edu->description }}</p>
             <p class="text-lg font-bold text-gray-300">
-              {{ $edu->start_year }} - 
-              <!-- Display Present if the end year is the current year -->
-              {{ $edu->end_year == date('Y') ? 'Present' : $edu->end_year }}
-            </p>
-            <p class="text-gray-400 text-sm">{{ $edu->institution }}</p>
+              {{ $edu->start_year }} - {{ $edu->end_year }}
+          </p>
+          <p class="text-dark font-weight-bold" style="font-size: 1.1rem;">{{ $edu->institution }}</p>
           </div>
         @endforeach
       </div>
@@ -246,11 +243,9 @@ typeEffect();
             <h3 class="text-xl font-bold text-yellow-400 mt-2">{{ $exp->title }}</h3>
             <p class="text-gray-300 mt-2  text-justify">{{ $exp->description }}</p>
             <p class="text-lg font-bold text-gray-300">
-              {{ $exp->start_year }} - 
-              <!-- Display Present if the end year is the current year -->
-              {{ $exp->end_year == date('Y') ? 'Present' : ($exp->end_year ?? 'Present') }}
-            </p>
-            <p class="text-gray-400 text-sm">{{ $exp->company }}</p>
+              {{ $exp->start_year }} - {{ $exp->end_year }}
+          </p>
+          <p class="text-dark font-weight-bold" style="font-size: 1.1rem;">{{ $exp->company }}</p>
           </div>
         @empty
           <p class="text-gray-400 text-lg">No experience available at the moment.</p>

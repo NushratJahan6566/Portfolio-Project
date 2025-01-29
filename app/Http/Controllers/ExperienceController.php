@@ -18,8 +18,8 @@ class ExperienceController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'company' => 'required|string|max:255',
-            'start_year' => 'required|digits:4|integer',
-            'end_year' => 'nullable|digits:4|integer',
+            'start_year' => 'required|string',
+            'end_year' => 'nullable|string',
             'description' => 'nullable|string',
         ]);
 
@@ -39,8 +39,8 @@ class ExperienceController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'company' => 'required|string|max:255',
-            'start_year' => 'required|digits:4|integer',
-            'end_year' => 'nullable|digits:4|integer',
+            'start_year' => 'required|string',
+            'end_year' => 'nullable|string',
             'description' => 'nullable|string',
         ]);
 

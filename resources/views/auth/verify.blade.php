@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verify Code</title>
+    <link rel="icon" href="{{ asset('images/logo2.jpg') }}" type="image/png">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <style>
@@ -18,7 +19,7 @@
             margin: 0;
         }
 
-        /* Logo Styling */
+        
         .webcraft-logo {
             display: flex;
             align-items: center;
@@ -67,7 +68,7 @@
             font-size: 14px;
         }
 
-        /* Updated Button Style */
+       
         .btn {
             width: 100%;
             padding: 15px;
@@ -108,7 +109,7 @@
 </head>
 <body>
 
-    <!-- Logo outside the form -->
+
     <div class="webcraft-logo">
         <i class="fas fa-code"></i> <span>Portfolio Lab</span>
     </div>

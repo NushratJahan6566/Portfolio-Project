@@ -36,13 +36,13 @@
                 <!-- Start Year Field -->
                 <div class="mb-3">
                     <label for="start_year" class="form-label">Start Year</label>
-                    <input type="number" name="start_year" id="start_year" class="form-control" value="{{ old('start_year', $item->start_year ?? '') }}" required>
+                    <input type="text" name="start_year" id="start_year" class="form-control" value="{{ old('start_year', $item->start_year ?? '') }}" required>
                 </div>
 
                 <!-- End Year Field -->
                 <div class="mb-3">
                     <label for="end_year" class="form-label">End Year</label>
-                    <input type="number" name="end_year" id="end_year" class="form-control" value="{{ old('end_year', $item->end_year ?? '') }}">
+                    <input type="text" name="end_year" id="end_year" class="form-control" value="{{ old('end_year', $item->end_year ?? '') }}">
                 </div>
 
                 <!-- Description Field -->

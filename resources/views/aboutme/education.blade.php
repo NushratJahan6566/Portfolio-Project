@@ -32,11 +32,11 @@
                 </div>
                 <div class="mb-3">
                     <label for="start_year" class="form-label">Start Year</label>
-                    <input type="number" name="start_year" id="start_year" class="form-control" value="{{ old('start_year', $education->start_year ?? '') }}" required>
+                    <input type="text" name="start_year" id="start_year" class="form-control" value="{{ old('start_year', $education->start_year ?? '') }}" required>
                 </div>
                 <div class="mb-3">
                     <label for="end_year" class="form-label">End Year</label>
-                    <input type="number" name="end_year" id="end_year" class="form-control" value="{{ old('end_year', $education->end_year ?? '') }}" required>
+                    <input type="text" name="end_year" id="end_year" class="form-control" value="{{ old('end_year', $education->end_year ?? '') }}" required>
                 </div>
                 <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
@@ -66,10 +66,7 @@
                             <td>{{ $ed->degree }}</td>
                             <td>{{ $ed->institution }}</td>
                             <td>{{ $ed->start_year }}</td>
-                            <td>
-                                <!-- Display Present if the end year is the current year -->
-                                {{ $ed->end_year == date('Y') ? 'Present' : $ed->end_year }}
-                            </td>
+                            <td>{{ $ed->end_year }}</td>
                             <td>{{ $ed->description }}</td>
                             <td>
                                 <a href="{{ route('education.edit', $ed->id) }}" class="btn btn-warning btn-sm">Edit</a>

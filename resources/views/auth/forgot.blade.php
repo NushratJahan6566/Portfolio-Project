@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Send Verification Code</title>
+    <link rel="icon" href="{{ asset('images/logo2.jpg') }}" type="image/png">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <style>
@@ -18,20 +19,20 @@
             height: 100vh;
         }
 
-        /* Logo Styling */
+       
         .webcraft-logo {
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3.5rem; /* Larger font size */
+            font-size: 3.5rem; 
             font-weight: 700;
-            color: #f39c12; /* Portfolio name color */
+            color: #f39c12; 
             font-family: 'Dancing Script', cursive;
             margin-bottom: 20px;
         }
 
         .webcraft-logo i {
-            font-size: 3.5rem; /* Icon size */
+            font-size: 3.5rem; 
             margin-right: 12px;
         }
 
@@ -48,7 +49,7 @@
             transition: 0.3s ease-in-out;
         }
 
-        /* Form container overlay effect on hover */
+        
         .form-container::before {
             content: "";
             position: absolute;
@@ -86,7 +87,7 @@
             font-size: 1rem;
         }
 
-        /* Styled Submit Button */
+        
         .submit-btn {
             width: 100%;
             max-width: 350px;
@@ -123,7 +124,7 @@
 </head>
 <body>
 
-    <!-- Logo outside the form -->
+   
     <div class="webcraft-logo">
         <i class="fas fa-code"></i> <span>Portfolio Lab</span>
     </div>
