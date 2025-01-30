@@ -355,6 +355,7 @@ typeEffect();
 <!-- Portfolio Items -->
 <section class="bg-cover bg-center text-white py-16 px-10 md:px-20 dynamic-background">
     <div class="max-w-screen-lg mx-auto text-center">
+      <h2 class="text-5xl font-extrabold text-yellow-400 mb-8 text-center">My works</h2>
         <div class="grid md:grid-cols-2 gap-8">
             @foreach($portfolios as $portfolio)
                 <div class="portfolio-item bg-[#150c3a] border border-gray-700 shadow-lg relative transition-transform hover:scale-105 p-6">

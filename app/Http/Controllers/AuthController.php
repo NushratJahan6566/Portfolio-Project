@@ -82,29 +82,7 @@ class AuthController extends Controller
         return view('auth.reset');
     }
 
-    public function showUpdate(Request $request)
-    {
-        // Get the email from the session
-        $email = $request->session()->get('email');
-
-        // If there's no email in the session, redirect to the verification page
-        if (!$email) {
-            return redirect()->route('forgot-login')->withErrors(['error' => 'Please verify your email before accessing this page.']);
-        }
-
-        // Check if the email has a valid verification code
-        $verification = DB::table('verification_codes')
-            ->where('email', $email)
-            ->where('expires_at', '>=', now())  // Ensure code is not expired
-            ->first();
-
-        if (!$verification) {
-            return redirect()->route('verify-code')->withErrors(['error' => 'Please verify your email before accessing this page.']);
-        }
-
-        return view('reset');
-    }
-
+   
 
     // Handle reset credentials
     public function reset(Request $request)
