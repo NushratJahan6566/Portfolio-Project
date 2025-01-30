@@ -5,7 +5,7 @@
 <!-- Page Banner -->
 <section class="banner">
     <div class="container">
-        <h1>Portfolio Dashboard</h1>
+        <h1>Portfolio Management</h1>
         <p>View and manage your portfolio details, showcase your work, and keep your information up to date.</p>
     </div>
 </section>

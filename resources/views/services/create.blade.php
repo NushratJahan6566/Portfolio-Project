@@ -4,7 +4,7 @@
     <!-- Page Banner -->
     <section class="banner">
         <div class="container">
-            <h1>Services Dashboard</h1>
+            <h1>Services Management</h1>
             <p>Effortlessly manage, update, and control your services from this dashboard.</p>
         </div>
     </section>

@@ -4,7 +4,7 @@
     <!-- Page Banner -->
     <section class="banner">
         <div class="container">
-            <h1>Skills Dashboard</h1>
+            <h1>Skills Management</h1>
             <p>Manage and update your skill set.</p>
         </div>
     </section>

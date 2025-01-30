@@ -5,7 +5,7 @@
     <!-- Page Banner -->
     <section class="banner">
         <div class="container">
-            <h1>About Me Dashboard</h1>
+            <h1>About Information</h1>
             <p>Manage and update your about me details.</p>
         </div>
     </section>

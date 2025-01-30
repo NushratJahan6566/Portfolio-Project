@@ -4,7 +4,7 @@
     <!-- Page Banner -->
     <section class="banner">
         <div class="container">
-            <h1>Contact Details Dashboard</h1>
+            <h1>Contact Details Management</h1>
             <p>Effortlessly manage, update, and control your contact details from this dashboard.</p>
         </div>
     </section>

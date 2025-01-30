@@ -3,7 +3,7 @@
 @section('content')
     <section class="banner">
         <div class="container">
-            <h1>Experience Dashboard</h1>
+            <h1>Experience Management</h1>
             <p>Manage and update your professional experience.</p>
         </div>
     </section>

@@ -4,7 +4,7 @@
     <!-- Page Banner -->
     <section class="banner">
         <div class="container">
-            <h1>Education Dashboard</h1>
+            <h1>Education Management</h1>
             <p>Manage and update your educational qualifications.</p>
         </div>
     </section>

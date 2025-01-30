@@ -4,7 +4,7 @@
     <!-- Page Banner -->
     <section class="banner">
         <div class="container">
-            <h1>Contact Messages Dashboard</h1>
+            <h1>Messages Management</h1>
             <p>View and manage contact messages. Editing is not permitted, but you may delete any message as needed.</p>
         </div>
     </section>
