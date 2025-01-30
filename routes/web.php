@@ -127,6 +127,8 @@ Route::get('/forgot-login', [AuthController::class, 'showForgotForm'])->name('fo
 Route::post('/send-code', [AuthController::class, 'sendVerificationCode'])->name('send-code');
 Route::get('/verify-code', [AuthController::class, 'showVerificationForm'])->name('verify-code');
 Route::post('/verify-code', [AuthController::class, 'verifyCode'])->name('post-verify-code');
+// Resend the verification code
+Route::post('resend-verification-code', [AuthController::class, 'resendVerificationCode'])->name('resend-verification-code');
 
 use App\Http\Middleware\VerifyCodeMiddleware;
 

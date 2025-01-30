@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Models\Email;
 use App\Models\Portfolio; 
 use App\Models\ContactMe;  
+use Carbon\Carbon;
 
 
 
@@ -162,14 +163,15 @@ class AuthController extends Controller
         // Generate a 6-digit verification code
         $verificationCode = rand(100000, 999999);
 
-        // Check if the email already exists in the 'verification_codes' table
-        DB::table('verification_codes')->updateOrInsert(
-            ['email' => $email], // Match by email
-            [
-                'code' => $verificationCode,         // New verification code
-                'expires_at' => now()->addMinutes(2), // Set expiration to 10 minutes from now
-            ]
-        );
+        // Delete all existing records in verification_codes table
+        DB::table('verification_codes')->truncate(); // This removes all records
+
+        // Insert new verification code
+        DB::table('verification_codes')->insert([
+            'email' => $email,
+            'code' => $verificationCode,
+            'expires_at' => Carbon::now()->addMinutes(2),
+        ]);
 
         // Send the verification code via email
         Mail::raw("Your verification code is: $verificationCode", function ($message) use ($email) {
@@ -182,10 +184,46 @@ class AuthController extends Controller
 
 
 
+
     public function showVerificationForm()
     {
         return view('auth.verify');
     }
+
+    // Resend the verification code (new code and updated expiry)
+    public function resendVerificationCode(Request $request)
+    {
+        // Get the email from the verification_codes table (only one email exists)
+        $existingCode = DB::table('verification_codes')->first();
+
+        if (!$existingCode) {
+            return redirect()->route('forgot-login')->with('error', 'No email found in the system. Please request a new code.');
+        }
+
+        $email = $existingCode->email;
+
+        // Generate a new 6-digit verification code
+        $verificationCode = rand(100000, 999999);
+
+        // Update the verification code and expiry in the database
+        DB::table('verification_codes')
+            ->where('email', $email)
+            ->update([
+                'code' => $verificationCode,
+                'expires_at' => Carbon::now()->addMinutes(2),
+            ]);
+
+        // Send the new verification code via email
+        Mail::raw("Your new verification code is: $verificationCode", function ($message) use ($email) {
+            $message->to($email)
+                ->subject('New Verification Code');
+        });
+
+        return redirect()->route('verify-code')->with('success', 'Verification code sent to your email.');
+    }
+
+
+
 
     public function verifyCode(Request $request)
     {
@@ -200,7 +238,7 @@ class AuthController extends Controller
             ->first();
 
         if (!$verification) {
-            return back()->withErrors(['code' => 'Invalid or expired verification code.']);
+            return back()->withErrors(['code' => 'Invalid verification code.Please request a new one.']);
         }
         // Store the session data after successful verification
         session(['verified_code' => true]);

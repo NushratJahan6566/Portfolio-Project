@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verify Code</title>
+    <title>Verification Code</title>
     <link rel="icon" href="{{ asset('images/logo2.jpg') }}" type="image/png">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
@@ -19,7 +19,6 @@
             margin: 0;
         }
 
-        
         .webcraft-logo {
             display: flex;
             align-items: center;
@@ -29,11 +28,6 @@
             color: #f39c12;
             font-family: 'Dancing Script', cursive;
             margin-bottom: 20px;
-        }
-
-        .webcraft-logo i {
-            font-size: 3.5rem;
-            margin-right: 10px;
         }
 
         .form-container {
@@ -68,7 +62,6 @@
             font-size: 14px;
         }
 
-       
         .btn {
             width: 100%;
             padding: 15px;
@@ -84,7 +77,14 @@
 
         .btn:hover {
             background: #003c8f;
+            
         }
+        .btn.resend {
+            background-color: #003c8f;
+            display: none; /* Initially hidden */
+        }
+
+        
 
         .message {
             text-align: center;
@@ -95,9 +95,10 @@
         }
 
         .message.error {
-            color: #842029;
-            background-color: #f8d7da;
-            border: 1px solid #f5c2c7;
+            font-size: 16px;
+            font-weight: bold;
+            color: red;
+            margin-bottom: 15px;
         }
 
         .message.success {
@@ -105,55 +106,131 @@
             background-color: #d1e7dd;
             border: 1px solid #badbcc;
         }
+
+        a {
+            color: #1a73e8;
+            text-decoration: none;
+            font-size: 14px;
+            display: block;
+            margin-top: 15px;
+        }
+
+        /* Timer Style */
+        #timer {
+            font-size: 16px;
+            font-weight: bold;
+            color: red;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
-
 
     <div class="webcraft-logo">
         <i class="fas fa-code"></i> <span>Portfolio Lab</span>
     </div>
 
     <div class="form-container">
-        <h2>Verify Code</h2>
+        <h2>Verify Your Email</h2>
+
+        <!-- Display success or error message -->
+        @if(session('success'))
+            <div class="message success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if(session('error'))
+            <div class="message error">
+                {{ session('error') }}
+            </div>
+        @endif
+
+
+
         <form action="{{ route('post-verify-code') }}" method="POST">
             @csrf
-            
-            <input
-                type="text"
-                name="code"
-                required
-                placeholder="Enter your verification code"
-                value="{{ old('code') }}"
-            >
-            <button type="submit" class="btn">Verify Code</button>
 
-            <!-- Display validation errors -->
-            @if ($errors->any())
-                <div class="message error">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
 
-            <!-- Display success message -->
-            @if (session('success'))
-                <div class="message success">
-                    {{ session('success') }}
-                </div>
-            @endif
 
-            <!-- Display error messages -->
-            @if (session('error'))
-                <div class="message error">
-                    {{ session('error') }}
-                </div>
-            @endif
+            <label for="code">Enter the verification code:</label>
+            <input type="text" id="code" name="code" required placeholder="Verification code" value="{{ old('code') }}">
+
+
+
+            <button type="submit" class="btn" id="verify-btn">Verify Code</button>
         </form>
+
+        <!-- Display validation errors -->
+        @if ($errors->has('code'))
+            <div class="message error">
+                {{ $errors->first('code') }}
+            </div>
+        @endif
+
+        <!-- Timer -->
+        <div id="timer" style="padding-top: 20px;">YOUR CODE EXPIRES IN 1:00</div>
+
+
+        <form action="{{ route('resend-verification-code') }}" method="POST">
+            @csrf
+            <button type="submit" class="btn resend" id="resend-btn">Resend Verification Code</button>
+        </form>
+
+        <a href="{{ route('forgot-login') }}">Back to Forgot Password</a>
     </div>
+
+
+
+
+    <script>
+        window.onload = function () {
+            let timerElement = document.getElementById("timer");
+            let verifyButton = document.getElementById("verify-btn");
+            let resendButton = document.getElementById("resend-btn");
+            let errorMessage = document.querySelector(".message.error");
+
+            if (errorMessage) {
+                // If an error exists, disable Verify button and show Resend button, no timer
+                verifyButton.style.display = "none"; // Hide verify button
+                resendButton.style.display = "block"; // Show resend button
+                timerElement.textContent = ""; // Show error message in place of timer
+                document.getElementById('code').disabled = true;
+
+            } else {
+                // If no error, start the timer
+                startTimer();
+            }
+        };
+
+        function startTimer() {
+            let timeLeft = 60; // 1 minute
+            let timerElement = document.getElementById("timer");
+            let verifyButton = document.getElementById("verify-btn");
+            let resendButton = document.getElementById("resend-btn");
+
+            let countdown = setInterval(() => {
+                let minutes = Math.floor(timeLeft / 60);
+                let seconds = timeLeft % 60;
+                let formattedSeconds = seconds < 10 ? "0" + seconds : seconds;
+                timerElement.textContent = `YOUR CODE EXPIRES IN ${minutes}:${formattedSeconds}`;
+
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    timerElement.textContent = "YOUR CODE HAS EXPIRED!Please request a new one";
+                    verifyButton.style.display = "none"; // Hide verify button
+                    resendButton.style.display = "block"; // Show resend button
+                    document.getElementById('code').disabled = true;
+
+                }
+
+                timeLeft--;
+            }, 1000);
+        }
+    </script>
+
+
+
 
 </body>
 </html>
